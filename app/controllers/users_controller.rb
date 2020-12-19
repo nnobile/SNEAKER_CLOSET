@@ -5,14 +5,24 @@ class UsersController < ApplicationController
     end
 
     post "/signup" do
-        binding.pry
         user = User.new(:email => params[:email], :password => params[:password])
         if user.save
-            sessions[:user_id] = :user_id
+            sessions[:user_id] = user.id
             redirect "/sneakers"
           else
             redirect "/failure"
           end
     end
+    
+    post "/login" do
+        user = User.find_by(:email => params[:email])
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect "/sneakers"
+        else
+          redirect "/failure"
+        end
+    end
+
 end
 

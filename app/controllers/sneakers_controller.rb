@@ -8,11 +8,11 @@ class SneakersController < ApplicationController
         # show all sneakers by a particular brand
     end
 
-    get "/sneakers/sport"
+    get "/sneakers/sport" do
         # show all sneakers by a particular brand
     end
 
-    post "/newsneaker" do
+    post "/sneakers/newsneaker" do
         if session[:user_id]
             Sneaker.create(params)
             redirect to "/sneakers"

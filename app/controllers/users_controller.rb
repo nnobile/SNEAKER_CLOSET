@@ -6,9 +6,13 @@ class UsersController < ApplicationController
 
     post "/signup" do
         binding.pry
-        user = User.create(params[:user])
-        session[:user_id] = user.id
-        redirect to "/sneakers"
+        user = User.new(:email => params[:email], :password => params[:password])
+        if user.save
+            sessions[:user_id] = :user_id
+            redirect "/sneakers"
+          else
+            redirect "/failure"
+          end
     end
 end
 

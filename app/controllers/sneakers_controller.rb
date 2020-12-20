@@ -5,6 +5,11 @@ class SneakersController < ApplicationController
         erb :"sneakers/index"
     end
 
+    get "/sneakers/:id" do
+        @sneaker = Sneaker.find_by(id: params[:id])
+        erb :"sneakers/show"
+    end
+
     get "/sneakers/brand" do
         # show all sneakers by a particular brand
     end

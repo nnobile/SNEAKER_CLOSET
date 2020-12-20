@@ -1,7 +1,8 @@
 class SneakersController < ApplicationController
 
     get "/sneakers" do
-        # show all sneakers
+        @sneakers = Sneaker.all
+        erb :"sneakers/index"
     end
 
     get "/sneakers/brand" do

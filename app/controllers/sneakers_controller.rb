@@ -7,7 +7,9 @@ class SneakersController < ApplicationController
 
     get "/sneakers/:id" do
         @sneaker = Sneaker.find_by(id: params[:id])
-        erb :"sneakers/show"
+        if @sneaker
+            erb :"sneakers/show"
+        else redirect "/sneakers"
     end
 
     get "/sneakers/brand" do

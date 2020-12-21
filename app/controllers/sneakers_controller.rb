@@ -10,6 +10,7 @@ class SneakersController < ApplicationController
         if @sneaker
             erb :"sneakers/show"
         else redirect "/sneakers"
+        end
     end
 
     get "/sneakers/brand" do
@@ -28,5 +29,4 @@ class SneakersController < ApplicationController
             redirect to "/failure"
         end
     end
-    
 end

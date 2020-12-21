@@ -1,7 +1,7 @@
-nick = User.create(name: "Nick Nobile", email: "nickcnobile@gmail.com", password: "guadalupe")
-jerome = User.create(name: "Jerome Billings", email: "jbillings@gmail.com", password: "hidalgo")
-jordan = User.create(name: "Michael Jordan", email: "michael@jordan.com", password: "jumpman23")
-austin = User.create(name: "Austin Walker", email: "awalker@yahoo.com", password: "skywalker33")
+nick = User.create(username: "nnobile", email: "nickcnobile@gmail.com", password: "guadalupe")
+jerome = User.create(username: "jbillings", email: "jbillings@gmail.com", password: "hidalgo")
+jordan = User.create(username: "mjordan", email: "michael@jordan.com", password: "jumpman23")
+austin = User.create(username: "awalker", email: "awalker@yahoo.com", password: "skywalker33")
 
 Sneaker.create(brand: "Nike", model: "Air Max 97", price: 102.38, sport: "lifestyle", size: 11, user_id: nick.id)
 Sneaker.create(brand: "Onitsuka Tiger", model: "Ultimate 81", price: 74.95, sport: "running", size: 11, user_id: nick.id)

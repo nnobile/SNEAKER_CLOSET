@@ -9,7 +9,8 @@ class SneakersController < ApplicationController
         @sneaker = Sneaker.find_by(id: params[:id])
         if @sneaker
             erb :"sneakers/show"
-        else redirect "/sneakers"
+        else 
+            redirect "/sneakers"
         end
     end
 
@@ -21,7 +22,7 @@ class SneakersController < ApplicationController
         # show all sneakers by a particular sport
     end
 
-    post "/sneakers/new" do
+    post "/sneakers" do
         if session[:user_id]
             Sneaker.create(params)
             redirect to "/sneakers"

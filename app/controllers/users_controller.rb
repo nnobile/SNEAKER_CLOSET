@@ -10,7 +10,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect "/sneakers"
           else
-            redirect "/failure"
+            erb :"users/new"
           end
     end
     
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     get "/logout" do
         session[:user_id] = nil
-        redirect to "/loggedout"
+        redirect to "/login"
     end
 
     get "/users/:id" do

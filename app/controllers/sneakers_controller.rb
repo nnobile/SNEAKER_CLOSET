@@ -17,7 +17,7 @@ class SneakersController < ApplicationController
     end
 
     get "/sneakers/sport" do
-        # show all sneakers by a particular brand
+        # show all sneakers by a particular sport
     end
 
     post "/sneakers/new" do

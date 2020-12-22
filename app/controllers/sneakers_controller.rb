@@ -39,7 +39,8 @@ class SneakersController < ApplicationController
 
     patch '/sneakers/:id/edit' do
         @sneaker = Sneaker.find_by(id: params[:id])
-        @sneaker.update.
+        @sneaker.update(params[:sneaker])
+        redirect to "sneakers/#{sneaker.id}"
     end
 
     # get '/sneakers/brand' do

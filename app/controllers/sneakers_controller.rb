@@ -43,6 +43,14 @@ class SneakersController < ApplicationController
         redirect to "sneakers/#{sneaker.id}"
     end
 
+    delete '/sneakers/:id' do
+        @sneaker = Sneaker.find_by(id: params[:id])
+        @sneaker.destroy
+        redirect "/sneakers"
+    end
+
+
+
     # get '/sneakers/brand' do
         # show all sneakers by a particular brand
     # end

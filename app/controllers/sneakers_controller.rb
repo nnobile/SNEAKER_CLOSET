@@ -1,5 +1,14 @@
 class SneakersController < ApplicationController
 
+    get "/sneakers/new" do
+        erb :"sneakers/new"
+    end
+
+    post "/sneakers" do
+        sneaker = Sneaker.create(params)
+        redirect "/sneakers"
+    end
+
     get "/sneakers" do
         @sneakers = Sneaker.all
         erb :"sneakers/index"
@@ -14,14 +23,6 @@ class SneakersController < ApplicationController
         end
     end
 
-    get "/sneakers/brand" do
-        # show all sneakers by a particular brand
-    end
-
-    get "/sneakers/sport" do
-        # show all sneakers by a particular sport
-    end
-
     post "/sneakers" do
         if session[:user_id]
             Sneaker.create(params)
@@ -30,4 +31,15 @@ class SneakersController < ApplicationController
             redirect to "/failure"
         end
     end
+
+    get "/sneakers/brand" do
+        # show all sneakers by a particular brand
+    end
+
+    get "/sneakers/sport" do
+        # show all sneakers by a particular sport
+    end
+
+
+
 end

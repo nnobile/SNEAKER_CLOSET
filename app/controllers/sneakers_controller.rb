@@ -37,6 +37,11 @@ class SneakersController < ApplicationController
         erb :"sneakers/edit"
     end
 
+    patch '/sneakers/:id/edit' do
+        @sneaker = Sneaker.find_by(id: params[:id])
+        @sneaker.update.
+    end
+
     # get '/sneakers/brand' do
         # show all sneakers by a particular brand
     # end

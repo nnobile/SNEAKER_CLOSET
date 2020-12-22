@@ -49,8 +49,6 @@ class SneakersController < ApplicationController
         redirect "/sneakers"
     end
 
-
-
     # get '/sneakers/brand' do
         # show all sneakers by a particular brand
     # end
@@ -58,7 +56,5 @@ class SneakersController < ApplicationController
     # get '/sneakers/sport' do
         # show all sneakers by a particular sport
     #end
-
-
 
 end

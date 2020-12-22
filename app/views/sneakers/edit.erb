@@ -1,14 +1,9 @@
-<h1>Edit <%= @sneaker.model %></h1>
-<form method="POST" action="/sneakers">
-    <label for="sBrand">Brand:</label>
-    <input type="text" id="sBrand" name="brand" required ><br>
-    <label for="sModel">Model:</label>
-    <input type="text" id = "sModel" name="model" required ><br>
-    <label for="sPrice">Price:</label>
-    <input type="float" id="sPrice" name="price" ><br>
-    <label for="sSport">Sport:</label>
-    <input type="text" id="sSport" name="sport" ><br>
-    <label for="sSize">Size:</label>
-    <input type="integer" id="sSize" name="size" ><br>
-    <input type="submit" value="Add Sneaker" >
+<h1>Editing: <%= @sneaker.model %></h1>
+<form method="POST" action="/sneakers/<%=@sneaker.id %>">
+    Brand: <input type="text" name="brand"><br>
+    Model: <input type="text" name="model"><br>
+    Sport: <input type="text" name="sport"><br>
+    Price: <input type="float" name="sport"><br>
+    Size:  <input type="integer" name="size"><br>
+    <input type="submit" value="Update!" >
 </form>

@@ -10,3 +10,8 @@
     </ul>
 
     <a href="/sneakers/<%= @user.id %>/edit"Edit <%= @user.username %></a>
+        
+    <form method= "POST" action="/sneakers/<%=@sneaker.id %>">
+        <input type="hidden" value= "DELETE" name "_method">
+        <input type="submit" value="Delete">
+    </form>

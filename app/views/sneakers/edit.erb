@@ -1,5 +1,6 @@
 <h1>Editing: <%= @sneaker.model %></h1>
 <form method="POST" action="/sneakers/<%=@sneaker.id %>">
+    <input name="_method">
     Brand: <input type="text" name="brand" value= "<%= @sneaker.brand %>"><br>
     Model: <input type="text" name="model" value= "<%= @sneaker.model %>"><br>
     Sport: <input type="text" name="sport" value= "<%= @sneaker.sport %>"><br>

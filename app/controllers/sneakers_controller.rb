@@ -5,7 +5,7 @@ class SneakersController < ApplicationController
     end
 
     post '/sneakers' do
-        sneaker = Sneaker.create(params)
+        @sneaker = Sneaker.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
         redirect '/sneakers'
     end
 

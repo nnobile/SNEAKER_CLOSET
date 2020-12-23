@@ -13,6 +13,10 @@ class UsersController < ApplicationController
             erb :"users/new"
           end
     end
+
+    get '/login' do
+        erb :"/login"
+    end
     
     post '/login' do
         @user = User.find_by(:username => params[:username])

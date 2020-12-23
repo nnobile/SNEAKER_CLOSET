@@ -1,11 +1,11 @@
-<h1>Full Sneaker Closet</h1>
+<h1>Full SneakerCloset</h1>
 <h2> <a href="sneakers/new" > Add new sneaker </a> </h2>
 <h2>Displaying all the kicks we have on file</h2>
 
 <% @sneakers.each do |sneaker| %>
-    <li><%= sneaker.brand %></li>
-    <li><%= sneaker.model %></li>
-    <li> <a href="/sneakers/<%= sneaker.id %>" > Sneaker Details </a> </li> <br>
+    <%= sneaker.brand %>,
+    <%= sneaker.model %>
+    <li> <h5> <a href="/sneakers/<%= sneaker.id %>" > More Details </a><h/5></li><br>
     <% end %>
 
 

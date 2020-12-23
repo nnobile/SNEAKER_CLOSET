@@ -10,7 +10,6 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect '/sneakers'
           else
-            binding.pry
             @errors = user.errors.full_messages.join(" - ")
             erb :"users/new"
           end

@@ -1,8 +1,9 @@
 <h1>Sign up</h1>
-<h6>Please create an account: <a href="/login">(Already have an account? Log in here.)</a><h/6>
+<%=@errors%>
+<h3>Please create an account: <a href="/login">(Already have an account? Log in here.)</a><h/3>
 
 <form method="POST" action="/signup">
-    Username: <input type="text" name="username" required ><br>
-    Password: <input type="password" name="password" ><br>
+<h6>Username: <input type="text" name="username" required ><br>
+    Password: <input type="password" name="password" ><br><h/6>
     <input type="submit" value="Sign up" >
 </form>

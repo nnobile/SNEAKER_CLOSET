@@ -16,6 +16,7 @@ class SneakersController < ApplicationController
 
     get '/sneakers/:id' do
         @sneaker = Sneaker.find_by(id: params[:id])
+        binding.pry
         if @sneaker
             erb :"sneakers/show"
         else 

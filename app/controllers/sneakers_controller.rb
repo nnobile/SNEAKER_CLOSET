@@ -1,13 +1,20 @@
 class SneakersController < ApplicationController
 
     get '/sneakers' do
-        @user = current_user
-        @sneakers = Sneaker.all
-        erb :"/sneakers/index"
+        if logged_in?
+            @sneakers = current_user.sneakers
+            erb :'sneakers/user_index'
+        else
+            redirect 'users/signup' 
+        end
     end
 
     get '/sneakers/new' do
-        erb :"/sneakers/new"
+        if logged_in?
+            erb :"/sneakers/new"
+        else
+            redirect 'users/login'
+        end
     end
 
     get '/sneakers/users/:user_id' do

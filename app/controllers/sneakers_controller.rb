@@ -60,7 +60,10 @@ class SneakersController < ApplicationController
     get '/sneakers/:id/edit' do
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
+            if current_user.id == @sneaker.user_id
             erb :"/sneakers/edit"
+        else
+            redirect to '/login'
         end
 
     patch '/sneakers/:id/edit' do

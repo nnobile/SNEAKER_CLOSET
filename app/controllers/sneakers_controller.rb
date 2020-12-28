@@ -5,7 +5,7 @@ class SneakersController < ApplicationController
             @sneakers = current_user.sneakers
             erb :'sneakers/user_index'
         else
-            redirect to '/signup' 
+            redirect to '/signup'
         end
     end
 
@@ -33,7 +33,8 @@ class SneakersController < ApplicationController
     end
 
     post '/sneakers' do 
-        @sneaker = Sneaker.create(params)
+        if logged_in?
+        @sneaker = current_user.sneakers.create(params)
         if @sneaker.save
             redirect '/sneakers'
         else
@@ -57,9 +58,10 @@ class SneakersController < ApplicationController
 
 
     get '/sneakers/:id/edit' do
-        @sneaker = Sneaker.find_by(id: params[:id])
-        erb :"/sneakers/edit"
-    end
+        if logged_in?
+            @sneaker = Sneaker.find_by(id: params[:id])
+            erb :"/sneakers/edit"
+        end
 
     patch '/sneakers/:id/edit' do
         if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id

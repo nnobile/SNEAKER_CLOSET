@@ -25,7 +25,7 @@ class SneakersController < ApplicationController
     end
 
     post '/sneakers' do
-        @sneaker = Sneaker.create(brand: params[:brand], model: params[:model], price: params[:price], sport: params[:sport], size: params[:size], user: current_user)
+        @sneaker = Sneaker.create(brand: params[:brand], model: params[:model], price: params[:price], sport: params[:sport], size: params[:size])
         if session[:user_id]
             Sneaker.create(params)
             redirect to '/sneakers'

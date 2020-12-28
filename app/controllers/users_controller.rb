@@ -25,7 +25,7 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           redirect '/sneakers'
         else
-          erb :"users/failure"
+          erb :"users/login_failure"
         end
     end
 

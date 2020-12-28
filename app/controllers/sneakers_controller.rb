@@ -5,15 +5,10 @@ class SneakersController < ApplicationController
     end
 
     get '/sneakers' do
-        if logged_in?
-            id_val = session[:user_id]
-            @sneakers = Sneaker.where(id: id_val)
-        else
-           @sneakers = Sneaker.all
-            erb :"sneakers/index"
-        end
+        @sneakers = Sneaker.all
+        erb :"sneakers/index"
     end
-
+    
     get '/sneakers/:id' do
         @sneaker = Sneaker.find_by(id: params[:id])
         if @sneaker
@@ -28,7 +23,7 @@ class SneakersController < ApplicationController
             Sneaker.create(params)
             redirect to '/sneakers'
         else 
-            redirect to '/failure'
+            erb :"users/unauthorized_failure"
         end
     end
 
@@ -38,9 +33,13 @@ class SneakersController < ApplicationController
     end
 
     patch '/sneakers/:id/edit' do
-        @sneaker = Sneaker.find_by(id: params[:id])
-        @sneaker.update(params[:sneaker])
-        redirect to "sneakers/#{sneaker.id}"
+        if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
+            @sneaker = Sneaker.find_by(id: params[:id])
+            @sneaker.update(params[:sneaker])
+            redirect to "sneakers/#{sneaker.id}"
+        else
+            erb :"users/unauthorized_failure"
+        end
     end
 
     delete '/sneakers/:id' do

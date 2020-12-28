@@ -24,9 +24,14 @@ class SneakersController < ApplicationController
         erb :"sneakers/user_index"
     end
 
+    # post '/sneakers/users/:user_id' do
+    #     if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
+    #     erb :"sneakers/user_index"
+    # end
+
     post '/sneakers' do
         if logged_in?
-        @sneaker = current_user.sneakers.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
+        @sneaker = Sneaker.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
             redirect '/sneakers'
         else 
             erb :"users/unauthorized_failure"

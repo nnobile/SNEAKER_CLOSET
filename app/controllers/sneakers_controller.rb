@@ -43,9 +43,13 @@ class SneakersController < ApplicationController
     end
 
     delete '/sneakers/:id' do
-        @sneaker = Sneaker.find_by(id: params[:id])
-        @sneaker.destroy
-        redirect "/sneakers"
+        if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
+            @sneaker = Sneaker.find_by(id: params[:id])
+            @sneaker.destroy
+            redirect "/sneakers"
+        else
+            erb :"users/unauthorized_failure"
+        end
     end
 
 end

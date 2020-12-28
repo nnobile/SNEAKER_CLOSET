@@ -3,7 +3,7 @@ class SneakersController < ApplicationController
     get '/sneakers' do
         if logged_in?
             @sneakers = current_user.sneakers
-            erb :'sneakers/user_index'
+            erb :"/sneakers/user_index"
         else
             redirect to '/signup'
         end
@@ -34,28 +34,12 @@ class SneakersController < ApplicationController
 
     post '/sneakers' do 
         if logged_in?
-        @sneaker = current_user.sneakers.create(params)
-        if @sneaker.save
+            @sneaker = current_user.sneakers.create(params)
             redirect '/sneakers'
         else
             redirect '/sneakers/new'
         end
     end
-
-    # post '/sneakers/users/:user_id' do
-    #     if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
-    #     erb :"sneakers/user_index"
-    # end
-
-    # post '/sneakers' do
-    #     if logged_in?
-    #     @sneaker = current_user.sneakers.create(params) Sneaker.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
-    #         redirect '/sneakers'
-    #     else 
-    #         erb :"users/unauthorized_failure"
-    #     end
-    # end
-
 
     get '/sneakers/:id/edit' do
         if logged_in?
@@ -63,8 +47,10 @@ class SneakersController < ApplicationController
             if current_user.id == @sneaker.user_id
             erb :"/sneakers/edit"
         else
-            redirect to '/login'
+        redirect to '/login'
         end
+       end
+    end
 
     patch '/sneakers/:id/edit' do
         if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
@@ -85,5 +71,4 @@ class SneakersController < ApplicationController
             erb :"/users/unauthorized_failure"
         end
     end
-
 end

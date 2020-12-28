@@ -24,7 +24,7 @@ class SneakersController < ApplicationController
     end
 
     post '/sneakers' do 
-        @sneaker = current_user.sneakers.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
+        @sneaker = Sneakers.create(params)
         if @sneaker.save
             redirect '/sneakers'
         else

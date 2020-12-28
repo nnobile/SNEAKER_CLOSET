@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     get '/logout' do
         session.clear
-        redirect to '/login'
+        erb :"/welcome"
     end
 
     get '/users/:id' do

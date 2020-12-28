@@ -3,9 +3,9 @@ class SneakersController < ApplicationController
     get '/sneakers' do
         if logged_in?
             @sneakers = current_user.sneakers
-            redirect '/sneakers'
+            erb :'sneakers/user_index'
         else
-            redirect 'users/signup' 
+            redirect to '/signup' 
         end
     end
 

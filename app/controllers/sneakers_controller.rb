@@ -24,7 +24,7 @@ class SneakersController < ApplicationController
     end
 
     post '/sneakers' do 
-        @sneaker = Sneakers.create(params)
+        @sneaker = Sneaker.create(params)
         if @sneaker.save
             redirect '/sneakers'
         else

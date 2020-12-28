@@ -18,10 +18,10 @@ class SneakersController < ApplicationController
         end
     end
 
-    get 'sneakers/:user_id' do
+    get '/sneakers/users/:user_id' do
         @current_id = session[:user_id]
         @sneakers = Sneaker.all
-        erb :"sneakers/user_index.erb"
+        erb :"sneakers/user_index"
     end
 
     post '/sneakers' do

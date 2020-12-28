@@ -4,11 +4,6 @@ class SneakersController < ApplicationController
         erb :"sneakers/new"
     end
 
-    post '/sneakers' do
-        @sneaker = Sneaker.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
-        redirect '/sneakers'
-    end
-
     get '/sneakers' do
         @sneakers = Sneaker.all
         erb :"sneakers/index"
@@ -16,7 +11,6 @@ class SneakersController < ApplicationController
 
     get '/sneakers/:id' do
         @sneaker = Sneaker.find_by(id: params[:id])
-        binding.pry
         if @sneaker
             erb :"sneakers/show"
         else 
@@ -49,13 +43,5 @@ class SneakersController < ApplicationController
         @sneaker.destroy
         redirect "/sneakers"
     end
-
-    # get '/sneakers/brand' do
-        # show all sneakers by a particular brand
-    # end
-
-    # get '/sneakers/sport' do
-        # show all sneakers by a particular sport
-    #end
 
 end

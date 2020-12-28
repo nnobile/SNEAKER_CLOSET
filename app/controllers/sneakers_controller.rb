@@ -18,6 +18,12 @@ class SneakersController < ApplicationController
         end
     end
 
+    get 'sneakers/:user_id' do
+        @current_id = session[:user_id]
+        @sneakers = Sneaker.all
+        erb :"sneakers/user_index.erb"
+    end
+
     post '/sneakers' do
         if session[:user_id]
             Sneaker.create(params)

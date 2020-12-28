@@ -5,8 +5,13 @@ class SneakersController < ApplicationController
     end
 
     get '/sneakers' do
-        @sneakers = Sneaker.all
-        erb :"sneakers/index"
+        if logged_in?
+            id_val = session[:user_id]
+            @sneakers = Sneaker.where(id: id_val)
+        else
+           @sneakers = Sneaker.all
+            erb :"sneakers/index"
+        end
     end
 
     get '/sneakers/:id' do

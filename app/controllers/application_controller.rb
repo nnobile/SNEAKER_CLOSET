@@ -10,11 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    if logged_in?
-      redirect to '/sneakers'
-    else
-      erb :welcome
-    end
+    erb :welcome
   end
 
   helpers do 
@@ -24,15 +20,18 @@ class ApplicationController < Sinatra::Base
     end
     
     def current_user
-      User.find_by_id(session[:user_id])
+      @current_user = User.find_by_id(session[:user_id])
     end
 
-    def redirect_to_if_logged_in
-      redirect '/sneakers' if logged_in?
-    end
-
-    def redirect_to_if_not_logged_in
-      redirect '/login' unless logged_in?
-    end
-
+  end
 end
+
+    # def redirect_to_if_logged_in
+    #   redirect '/sneakers' if logged_in?
+    # end
+
+    # def redirect_to_if_not_logged_in
+    #   redirect '/login' unless logged_in?
+    # end
+
+

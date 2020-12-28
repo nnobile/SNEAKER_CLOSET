@@ -5,10 +5,10 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        user = User.new(params)
-        if user.save
-            session[:user_id] = user.id
-            redirect '/sneakers'
+        @user = User.new(params)
+        if @user.save
+            session[:user_id] = @user.id
+            redirect to '/sneakers'
           else
             @errors = user.errors.full_messages.join(" - ")
             erb :"users/new"
@@ -16,7 +16,11 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        erb :"users/login"
+        if logged_in?
+            redirect '/sneakers'
+        else
+            erb :"users/login"
+        end
     end
     
     post '/login' do
@@ -25,19 +29,24 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           redirect '/sneakers'
         else
-          erb :"users/login_failure"
+            #possible flash notice here
+          redirect 'signup'
         end
     end
 
     get '/logout' do
-        session.clear
-        erb :"/welcome"
+        if logged_in?
+            session.clear
+            redirect '/login'
+        else
+            redirect '/'
+        end
     end
 
-    get '/users/:id' do
-        @user = User.find_by(id: params[:id])
-        erb :"users/show"
-    end
+    # get '/users/:id' do
+    #     @user = User.find_by(id: params[:id])
+    #     erb :"users/show"
+    # end
 
 end
 

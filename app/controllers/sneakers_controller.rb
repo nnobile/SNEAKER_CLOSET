@@ -3,7 +3,7 @@ class SneakersController < ApplicationController
     get '/sneakers' do
         if logged_in?
             @sneakers = current_user.sneakers
-            erb :'sneakers/user_index'
+            redirect '/sneakers'
         else
             redirect 'users/signup' 
         end

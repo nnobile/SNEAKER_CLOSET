@@ -1,8 +1,7 @@
 <h1>Welcome to your SneakerCloset, <%=current_user.username %>!</h1><br><br>
 <h2> <a href="sneakers/new" > Add new sneaker </a> </h2>
 
-<% @sneakers.each do |sneaker| %>
-    <% if sneaker.user_id == @current_id %>
+    <% @sneakers.each do |sneaker| %>
     <%= sneaker.brand %>,
     <%= sneaker.model %>
     <li><h5><a href="/sneakers/<%= sneaker.id %>">More Details</a><h/5></li><br>

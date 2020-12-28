@@ -25,10 +25,9 @@ class SneakersController < ApplicationController
     end
 
     post '/sneakers' do
-        @sneaker = Sneaker.create(brand: params[:brand], model: params[:model], price: params[:price], sport: params[:sport], size: params[:size])
-        if session[:user_id]
-            Sneaker.create(params)
-            redirect to '/sneakers'
+        if logged_in?
+        @sneaker = current_user.sneakers.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
+            redirect '/sneakers'
         else 
             erb :"users/unauthorized_failure"
         end
@@ -43,7 +42,7 @@ class SneakersController < ApplicationController
         if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
             @sneaker = Sneaker.find_by(id: params[:id])
             @sneaker.update(params[:sneaker])
-            redirect to "sneakers/#{sneaker.id}"
+            redirect "sneakers/#{sneaker.id}"
         else
             erb :"users/unauthorized_failure"
         end

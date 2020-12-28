@@ -1,27 +1,28 @@
 class SneakersController < ApplicationController
 
-    get '/sneakers/new' do
-        erb :"sneakers/new"
+    get '/sneakers' do
+        @user = current_user
+        @sneakers = Sneaker.all
+        erb :"/sneakers/index"
     end
 
-    get '/sneakers' do
-        @sneakers = Sneaker.all
-        erb :"sneakers/index"
-    end
-    
-    get '/sneakers/:id' do
-        @sneaker = Sneaker.find_by(id: params[:id])
-        if @sneaker
-            erb :"sneakers/show"
-        else 
-            redirect '/sneakers'
-        end
+    get '/sneakers/new' do
+        erb :"/sneakers/new"
     end
 
     get '/sneakers/users/:user_id' do
         @current_id = session[:user_id]
         @sneakers = Sneaker.all
-        erb :"sneakers/user_index"
+        erb :"/sneakers/user_index"
+    end
+
+    post '/sneakers' do 
+        @sneaker = current_user.sneakers.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
+        if @sneaker.save
+            redirect '/sneakers'
+        else
+            redirect '/sneakers/new'
+        end
     end
 
     # post '/sneakers/users/:user_id' do
@@ -29,18 +30,27 @@ class SneakersController < ApplicationController
     #     erb :"sneakers/user_index"
     # end
 
-    post '/sneakers' do
-        if logged_in?
-        @sneaker = Sneaker.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
-            redirect '/sneakers'
+    # post '/sneakers' do
+    #     if logged_in?
+    #     @sneaker = current_user.sneakers.create(params) Sneaker.create(:brand => params[:brand], :model => params[:model], :price => params[:price], :sport => params[:sport], :size => params[:size])
+    #         redirect '/sneakers'
+    #     else 
+    #         erb :"users/unauthorized_failure"
+    #     end
+    # end
+
+    get '/sneakers/:id' do
+        @sneaker = Sneaker.find_by(id: params[:id])
+        if @sneaker
+            erb :"/sneakers/show"
         else 
-            erb :"users/unauthorized_failure"
+            redirect '/sneakers'
         end
     end
 
     get '/sneakers/:id/edit' do
         @sneaker = Sneaker.find_by(id: params[:id])
-        erb :"sneakers/edit"
+        erb :"/sneakers/edit"
     end
 
     patch '/sneakers/:id/edit' do
@@ -49,7 +59,7 @@ class SneakersController < ApplicationController
             @sneaker.update(params[:sneaker])
             redirect "sneakers/#{sneaker.id}"
         else
-            erb :"users/unauthorized_failure"
+            erb :"/users/unauthorized_failure"
         end
     end
 
@@ -59,7 +69,7 @@ class SneakersController < ApplicationController
             @sneaker.destroy
             redirect "/sneakers"
         else
-            erb :"users/unauthorized_failure"
+            erb :"/users/unauthorized_failure"
         end
     end
 

@@ -34,7 +34,7 @@ class SneakersController < ApplicationController
 
     post '/sneakers' do 
         if logged_in?
-            @sneaker = current_user.sneakers.create(params)
+            sneaker = current_user.sneakers.create(params)
             redirect '/sneakers'
         else
             redirect '/sneakers/new'

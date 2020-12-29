@@ -1,5 +1,6 @@
-<h1>Welcome to your SneakerCloset, <%=current_user.username %>!</h1><br><br>
-<h2> <a href="sneakers/new" > Add new sneaker </a> </h2>
+<h1>Welcome to your SneakerCloset, <%=current_user.username %>!</h1><br>
+<h2> <a href="/sneakers/new" > Add a new sneaker to your closet </a><br>
+<a href="/sneakers" > View our complete sneaker database </a> </h2>
 
     <% @sneakers.each do |sneaker| %>
     <%= sneaker.brand %>,
@@ -8,6 +9,9 @@
     <% end %>
 
     <% if logged_in? %>
-    <h3>You are logged in as: <%= current_user.username %> </h3>
+    <h4>You are logged in as: <%= current_user.username %> </h4>
     <a href ="/logout"> Log out here</a>
-    <% end %>
+    <% end %><br>
+
+
+    

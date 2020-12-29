@@ -10,7 +10,6 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect to '/sneakers'
           else
-            @errors = user.errors.full_messages.join(" - ")
             erb :"users/new"
           end
     end
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
           redirect '/sneakers'
         else
             #possible flash notice here
-            redirect '/'
+            redirect '/signup'
         end
     end
 
@@ -38,8 +37,6 @@ class UsersController < ApplicationController
         if logged_in?
             session.clear
             redirect '/'
-        else
-            redirect '/signup'
         end
     end
 

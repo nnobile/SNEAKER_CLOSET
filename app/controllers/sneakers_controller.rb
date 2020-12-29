@@ -22,22 +22,23 @@ class SneakersController < ApplicationController
             @sneaker = Sneaker.find_by(id: params[:id])
             erb :"/sneakers/show"
         else 
-            redirect '/login'
+            redirect to '/login'
         end
     end
 
-    get '/sneakers/users/:user_id' do
-        @current_id = session[:user_id]
-        @sneakers = Sneaker.all
-        erb :"/sneakers/user_index"
-    end
+    # get '/sneakers/users/:user_id' do
+    #     @current_id = session[:user_id]
+    #     @sneakers = Sneaker.all
+    #     erb :"/sneakers/user_index"
+    # end
 
     post '/sneakers' do 
         if logged_in?
-            sneaker = current_user.sneakers.create(params)
-            redirect '/sneakers'
+            @sneaker = current_user.sneakers.create(params)
+            #possible flash message
+            redirect to '/sneakers'
         else
-            redirect '/sneakers/new'
+            erb :"/sneakers/new"
         end
     end
 
@@ -61,7 +62,7 @@ class SneakersController < ApplicationController
             @sneaker.price = params[:price]
             @sneaker.size = params[:size]
             @sneaker.save
-            redirect "sneakers/#{sneaker.id}"
+            redirect to "/sneakers/#{sneaker.id}"
         else
             erb :"/users/unauthorized_failure"
         end
@@ -71,7 +72,7 @@ class SneakersController < ApplicationController
         if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
             @sneaker = Sneaker.find_by(id: params[:id])
             @sneaker.destroy
-            redirect "/sneakers"
+            redirect to '/sneakers'
         else
             erb :"/users/unauthorized_failure"
         end

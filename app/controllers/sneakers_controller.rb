@@ -4,6 +4,9 @@ class SneakersController < ApplicationController
         if logged_in?
             @sneakers = current_user.sneakers
             erb :"/sneakers/index"
+        elsif
+            @sneakers = Sneaker.all
+            erb :"/allsneakers"
         else
             redirect to '/signup'
         end

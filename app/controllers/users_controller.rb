@@ -30,16 +30,16 @@ class UsersController < ApplicationController
           redirect '/sneakers'
         else
             #possible flash notice here
-          redirect 'signup'
+            redirect '/'
         end
     end
 
     get '/logout' do
         if logged_in?
             session.clear
-            redirect '/login'
-        else
             redirect '/'
+        else
+            redirect '/signup'
         end
     end
 

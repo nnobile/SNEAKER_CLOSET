@@ -47,15 +47,20 @@ class SneakersController < ApplicationController
             if current_user.id == @sneaker.user_id
             erb :"/sneakers/edit"
         else
-        redirect to '/login'
+            redirect to '/login'
         end
        end
     end
 
     patch '/sneakers/:id/edit' do
-        if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
+        if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
-            @sneaker.update(params[:sneaker])
+            @sneaker.brand = params[:brand]
+            @sneaker.model = params[:model]
+            @sneaker.sport = params[:sport]
+            @sneaker.price = params[:price]
+            @sneaker.size = params[:size]
+            @sneaker.save
             redirect "sneakers/#{sneaker.id}"
         else
             erb :"/users/unauthorized_failure"

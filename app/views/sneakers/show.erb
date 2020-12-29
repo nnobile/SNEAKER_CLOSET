@@ -1,4 +1,4 @@
-<h1>Model: <%= @sneaker.model%></h1>
+<h2>Model: <%= @sneaker.model%></h2>
 <h2>Brand: <%= @sneaker.brand%></h2>
 <h4>Sport: <%= @sneaker.sport%></h4>
 <h4>Price: <%= @sneaker.price%></h4>
@@ -7,6 +7,7 @@
 <br>
 
 <li><h5><a href="/sneakers/<%=@sneaker.id%>">Edit Sneaker</a><h/5></li><br>
+<li><h5><a href="/sneakers/<%=@sneaker.id%>">Delete Sneaker</a><h/5></li><br>
 
 <% if logged_in? %>
     <h3>You are logged in as: <%= current_user.username %> </h3>

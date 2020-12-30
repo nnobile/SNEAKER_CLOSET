@@ -10,6 +10,11 @@ class SneakersController < ApplicationController
         end
     end
 
+    get '/sneakers' do
+        @sneakers = Sneaker.all
+        erb :"/allsneakers"
+    end
+
     get '/sneakers/new' do
         if logged_in?
             erb :"/sneakers/new"
@@ -27,11 +32,14 @@ class SneakersController < ApplicationController
         end
     end
 
-    # get '/sneakers/users/:user_id' do
-    #     @current_id = session[:user_id]
-    #     @sneakers = Sneaker.all
-    #     erb :"/sneakers/user_index"
-    # end
+    get '/sneakers/users/:user_id' do
+        if logged_in?
+            @sneakers = current_user.sneakers
+            erb :"/sneakers/index"
+        else
+            redirect to '/login'
+        end
+    end
 
     post '/sneakers' do 
         if logged_in?

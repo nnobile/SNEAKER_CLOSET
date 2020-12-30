@@ -26,12 +26,3 @@ class ApplicationController < Sinatra::Base
   end
 end
 
-    # def redirect_to_if_logged_in
-    #   redirect '/sneakers' if logged_in?
-    # end
-
-    # def redirect_to_if_not_logged_in
-    #   redirect '/login' unless logged_in?
-    # end
-
-

@@ -34,7 +34,6 @@ class SneakersController < ApplicationController
     post '/sneakers' do 
         if logged_in?
             @sneaker = current_user.sneakers.create(params)
-            #possible flash message
             redirect to '/sneakers'
         else
             erb :"/sneakers/new"

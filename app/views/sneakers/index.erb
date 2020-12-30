@@ -1,6 +1,6 @@
 <h1>Welcome to your SneakerCloset, <%=current_user.username %>!</h1>
-<h2> <a href="/sneakers/new" > Add a new sneaker to your SneakerCloset </a><br>
-<a href="/sneakers" > View the complete sneaker database </a></h2>
+<h2><a href="/sneakers/new">Add a new sneaker to your SneakerCloset</a><br>
+<a href="/sneakers">View the complete sneaker database</a></h2>
 
 <h3> Your collection: </h3>
     <% @sneakers.each do |sneaker| %>
@@ -8,14 +8,12 @@
     <%= sneaker.model %>
     <li><h5><a href="/sneakers/<%=sneaker.id%>">More Details</a><h/5></li><br>
     <% end %>
-
     <br>
     <br>
-
     <% if logged_in? %>
     <h4>You are logged in as: <%= current_user.username  %> </h4>
     <a href ="/logout"> Log out here</a>
-    <% end %><br>
+    <% end %> 
 
 
     

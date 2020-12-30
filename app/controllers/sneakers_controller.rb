@@ -1,16 +1,6 @@
 class SneakersController < ApplicationController
 
     get '/sneakers' do
-        if logged_in?
-            @sneakers = current_user.sneakers
-            erb :"/sneakers/index"
-        else
-            @sneakers = Sneaker.all
-            erb :"/allsneakers"
-        end
-    end
-
-    get '/sneakers' do
         @sneakers = Sneaker.all
         erb :"/allsneakers"
     end
@@ -55,7 +45,7 @@ class SneakersController < ApplicationController
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
             if @current_user.id == @sneaker.user_id
-            erb :"/sneakers/edit"
+                erb :"/sneakers/edit"
         else
             redirect to '/login'
         end
@@ -66,13 +56,15 @@ class SneakersController < ApplicationController
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
             if current_user.id == @sneaker.user_id
-            @sneaker.brand = params[:brand]
-            @sneaker.model = params[:model]
-            @sneaker.sport = params[:sport]
-            @sneaker.price = params[:price]
-            @sneaker.size = params[:size]
-            @sneaker.save
-            redirect to "/sneakers/#{@sneaker.id}"
+                @sneaker.brand = params[:brand]
+                @sneaker.model = params[:model]
+                @sneaker.sport = params[:sport]
+                @sneaker.price = params[:price]
+                @sneaker.size = params[:size]
+                @sneaker.save
+                redirect to "/sneakers/#{@sneaker.id}"
+            else
+                erb :"/users/unauthorized_failure"
             end
         else
             erb :"/users/unauthorized_failure"
@@ -82,9 +74,11 @@ class SneakersController < ApplicationController
     delete '/sneakers/:id/delete' do
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
-            if current_user.id == @sneaker.user_id
-            @sneaker.destroy
-            redirect to '/sneakers'
+            if  current_user.id == @sneaker.user_id
+                @sneaker.destroy
+                redirect to '/sneakers'
+            else
+                erb :"/users/unauthorized_failure"
             end
         else
             erb :"/users/unauthorized_failure"

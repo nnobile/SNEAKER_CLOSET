@@ -72,7 +72,7 @@ class SneakersController < ApplicationController
     end
 
     delete '/sneakers/:id' do
-        if session[:user_id] == Sneaker.find_by(id: params[:id]).user_id
+        if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
             @sneaker.destroy
             redirect to '/sneakers'

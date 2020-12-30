@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     post '/signup' do
         @user = User.new(params)
         if @user.save
+            session.clear
             session[:user_id] = @user.id
             redirect to '/sneakers/new'
           else
@@ -25,10 +26,10 @@ class UsersController < ApplicationController
     post '/login' do
         @user = User.find_by(:username => params[:username])
         if @user && @user.authenticate(params[:password])
+          session.clear
           session[:user_id] = @user.id
           redirect '/sneakers'
         else
-            #possible flash notice here
             redirect '/signup'
         end
     end
@@ -39,11 +40,5 @@ class UsersController < ApplicationController
             redirect '/'
         end
     end
-
-    # get '/users/:id' do
-    #     @user = User.find_by(id: params[:id])
-    #     erb :"users/show"
-    # end
-
 end
 

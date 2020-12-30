@@ -4,11 +4,9 @@ class SneakersController < ApplicationController
         if logged_in?
             @sneakers = current_user.sneakers
             erb :"/sneakers/index"
-        elsif
+        else
             @sneakers = Sneaker.all
             erb :"/allsneakers"
-        else
-            redirect to '/signup'
         end
     end
 
@@ -48,7 +46,7 @@ class SneakersController < ApplicationController
     get '/sneakers/:id/edit' do
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
-            if current_user.id == @sneaker.user_id
+            if @current_user.id == @sneaker.user_id
             erb :"/sneakers/edit"
         else
             redirect to '/login'
@@ -59,6 +57,7 @@ class SneakersController < ApplicationController
     patch '/sneakers/:id/edit' do
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
+            if current_user.id == @sneaker.user_id
             @sneaker.brand = params[:brand]
             @sneaker.model = params[:model]
             @sneaker.sport = params[:sport]
@@ -66,16 +65,19 @@ class SneakersController < ApplicationController
             @sneaker.size = params[:size]
             @sneaker.save
             redirect to "/sneakers/#{@sneaker.id}"
+            end
         else
             erb :"/users/unauthorized_failure"
         end
     end
 
-    delete '/sneakers/:id' do
+    delete '/sneakers/:id/delete' do
         if logged_in?
             @sneaker = Sneaker.find_by(id: params[:id])
+            if current_user.id == @sneaker.user_id
             @sneaker.destroy
             redirect to '/sneakers'
+            end
         else
             erb :"/users/unauthorized_failure"
         end

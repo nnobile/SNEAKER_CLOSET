@@ -65,7 +65,7 @@ class SneakersController < ApplicationController
             @sneaker.price = params[:price]
             @sneaker.size = params[:size]
             @sneaker.save
-            redirect to "/sneakers/#{sneaker.id}"
+            redirect to "/sneakers/#{@sneaker.id}"
         else
             erb :"/users/unauthorized_failure"
         end

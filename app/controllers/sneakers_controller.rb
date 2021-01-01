@@ -45,10 +45,12 @@ class SneakersController < ApplicationController
             @sneaker = Sneaker.find_by(id: params[:id])
             if @current_user.id == @sneaker.user_id
                 erb :"/sneakers/edit"
+            else
+                erb :"/users/unauthorized_failure"
+            end
         else
             redirect to '/login'
         end
-       end
     end
 
     patch '/sneakers/:id/edit' do

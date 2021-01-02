@@ -1,8 +1,7 @@
-#SneakerCloset
+# SneakerCloset
 
-This Sinatra project allows users to sign up, login, and store new sneakers to their virtual closet.
-
-The mission of this project is to provide people with the ability to discover new sneakers, and keep tabs on their existing collection.
+## Description and Instructions
+This Sinatra project allows users to sign up, login, and store new sneakers to their virtual closet. The mission of this project is to provide people with the ability to discover new sneakers, and keep tabs on their existing collection.
 
 For users working with the source from GitHub, you can:
 
@@ -12,7 +11,7 @@ For users working with the source from GitHub, you can:
 4. Run shotgun
 5. Open your favorite browser and enter the given local url provided by the shotgun server!
 
-#A Contributor's Guide
+## A Contributor's Guide
 Not currently taking any requests for contributions. Reviewing all requests periodically. Stay tuned for updates!
 
 #Authors and acknowledgment

@@ -21,6 +21,7 @@ This program uses the 'Pry' gem, authored by Banister (https://github.com/pry/pr
 This program uses the 'Rake' gem, authored by Jim Weirich (https://github.com/ruby/rake)
 This program uses the 'Bcrypt' gem, authored by TJ Schuck (https://github.com/codahale/bcrypt-ruby)
 
+## License
 This project is licensed under the MIT license, linked here: https://opensource.org/licenses/MIT
 Copyright (c) 2020, Nick Nobile All rights reserved.
 

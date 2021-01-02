@@ -14,7 +14,7 @@ For users working with the source from GitHub, you can:
 ## A Contributor's Guide
 Not currently taking any requests for contributions. Reviewing all requests periodically. Stay tuned for updates!
 
-#Authors and acknowledgment
+## Authors and acknowledgment
 This program uses the 'Corneal' gem, authored by Brian Emory (https://github.com/thebrianemory/corneal)
 This program uses the 'Sinatra' gem, authored by Blake Mizerany (https://github.com/bmizerany)
 This program uses the 'Pry' gem, authored by Banister (https://github.com/pry/pry)
